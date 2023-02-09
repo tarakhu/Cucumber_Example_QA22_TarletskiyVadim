@@ -1,6 +1,6 @@
 Feature: Booking search tests
   Scenario: Search for Premiere Classe Wroclaw Centrum
-    Given I am at 'www.booking.com/searchresults.en-gb.html' page
+    Given I am at booking search  page
     When I set 'Premiere Classe Wroclaw Centrum' into search bar
     And I click to search button
     Then 'Premiere Classe Wroclaw Centrum' should be present in first search result title
