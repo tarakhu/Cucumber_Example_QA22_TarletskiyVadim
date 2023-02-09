@@ -7,7 +7,7 @@ import pages.BasePage;
 
 public class BookingResultsPage extends BasePage {
 
-    private final static By SEARCH_RESULTS = By.cssSelector("div[data-testid='property-card']");
+    private final static By SEARCH_RESULTS = By.xpath("//div[@data-testid='property-card']");
 
 
     public BookingResultsPage(WebDriver driver) {
@@ -15,11 +15,17 @@ public class BookingResultsPage extends BasePage {
     }
 
     public String getSearchResultTextByIndex(int index) {
-        return getSearchResultByIndex(index).findElement(By.cssSelector("div[data-testid='title'] ")).getText();
+        return getSearchResultByIndex(index).findElement(By.xpath("//div[@data-testid='title']")).getText();
     }
 
     private WebElement getSearchResultByIndex(int index) {
         return driver.findElements(SEARCH_RESULTS).get(index - 1);
     }
+
+    public double getSearchResultRatingByIndex(int index) {
+        return Double.parseDouble(getSearchResultByIndex(index)
+                .findElement(By.xpath("//div[@data-testid='review-score']/div[@aria-label]")).getText());
+    }
+
 
 }
